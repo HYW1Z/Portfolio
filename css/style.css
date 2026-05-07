@@ -157,6 +157,15 @@ h3 {
   font-size: var(--fs-h3);
 }
 
+/* Code comment section titles */
+.code-comment {
+  font-family: var(--ff-secondary);
+  color: var(--clr-accent-bright);
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-shadow: var(--glow-sm);
+}
+
 .section__subtitle--intro,
 .section__subtitle--about {
   background: var(--clr-accent);
@@ -480,50 +489,67 @@ header {
 /* About Me */
 
 .about-me {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   background: var(--clr-bg);
 }
 
-.about-me__body p {
-  color: var(--clr-text-muted);
+.section__title--about {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.about-me__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5em;
+}
+
+@media (min-width: 800px) {
+  .about-me__layout {
+    flex-direction: row;
+    gap: 2.5em;
+  }
+}
+
+.about-me__left {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  flex: 1;
+}
+
+.terminal--mini {
+  max-width: 100%;
+}
+
+.terminal__body--mini {
+  padding: 1.8em 2.2em;
+  min-height: auto;
+  font-size: 1.2rem;
+  line-height: 2;
 }
 
 .about-me__img {
   box-shadow: var(--bs);
   border: 2px solid rgba(167, 139, 250, 0.2);
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  flex-shrink: 0;
+  object-fit: cover;
+  align-self: flex-start;
 }
 
-@media (min-width: 600px) {
-  .about-me {
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    grid-template-areas:
-      "title img"
-      "subtitle img"
-      "text img";
-    column-gap: 2em;
-  }
+.about-me__body {
+  max-width: 100%;
+}
 
-  .section__title--about {
-    grid-area: title;
-  }
-
-  .section__subtitle--about {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    position: relative;
-    left: -1em;
-    width: calc(100% + 2em);
-    padding-left: 1em;
-    padding-right: calc(200px + 2.5em);
-  }
-
-  .about-me__img {
-    grid-area: img;
-    position: relative;
-    z-index: 2;
-  }
+.about-me__body p {
+  color: var(--clr-text-muted);
+  font-size: 1.2rem;
+  line-height: 1.8;
 }
 
 /* Portfolio / My projects */
@@ -638,6 +664,14 @@ header {
   padding: 2.5em 0;
   font-size: var(--fs-h3);
   border-top: 1px solid rgba(167, 139, 250, 0.1);
+}
+
+.footer__signoff {
+  font-family: var(--ff-secondary);
+  color: var(--clr-text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 1.5em;
+  opacity: 0.6;
 }
 
 .footer a {

@@ -66,7 +66,9 @@
 
     <!-- My Services -->
     <section class="my-services" id="skills">
-        <h2 class="section__title section__title--services reveal">What I do</h2>
+        <h2 class="section__title section__title--services reveal">
+            <span class="code-comment">// Skills</span>
+        </h2>
         <div class="services">
             <div class="service reveal">
                 <h3>C++</h3>
@@ -107,31 +109,54 @@
 
     <!-- About Me -->
     <section class="about-me" id="about">
-        <h2 class="section__title section__title--about reveal">Who I am</h2>
-        <p class="section__subtitle section__subtitle--about reveal">
-            CS Student &amp; Game Developer at DigiPen-KMU
-        </p>
+        <h2 class="section__title section__title--about reveal">
+            <span class="code-comment">// About</span>
+        </h2>
 
-        <div class="about-me__body reveal">
-            <p>
-                Currently studying Computer Science at DigiPen-KMU, with a focus on computer graphics using OpenGL and
-                data structures &amp; algorithms. Alongside these core subjects, I'm also building a foundation in
-                mathematics and physics to deepen my understanding of real-time simulation and game systems.
-            </p>
-            <p>
-                As a student, I've had the opportunity to form teams with diverse classmates and collaborate on game
-                development projects from the ground up. These experiences taught me the value of clear communication,
-                shared problem-solving, and bringing different perspectives together. Going forward, I want to continue
-                growing as a developer by working with even more people and contributing to larger, more ambitious
-                projects.
-            </p>
+        <div class="about-me__layout reveal">
+            <div class="about-me__left">
+                <div class="terminal terminal--mini">
+                    <div class="terminal__header">
+                        <span class="terminal__dot terminal__dot--red"></span>
+                        <span class="terminal__dot terminal__dot--yellow"></span>
+                        <span class="terminal__dot terminal__dot--green"></span>
+                        <span class="terminal__title">whoami</span>
+                    </div>
+                    <div class="terminal__body terminal__body--mini">
+                        <div class="line"><span class="prompt">$</span> <span class="cmd">whoami</span></div>
+                        <div class="line"><span class="keyword">name</span><span class="operator">:</span> <span class="string">"Ginam Park"</span></div>
+                        <div class="line"><span class="keyword">role</span><span class="operator">:</span> <span class="string">"CS Student &amp; Game Developer"</span></div>
+                        <div class="line"><span class="keyword">school</span><span class="operator">:</span> <span class="string">"DigiPen-KMU"</span></div>
+                        <div class="line"><span class="keyword">focus</span><span class="operator">:</span> <span class="string">"Graphics, Data Structures, Algorithms"</span></div>
+                        <div class="line"><span class="keyword">also</span><span class="operator">:</span> <span class="string">"Mathematics, Physics"</span></div>
+                    </div>
+                </div>
+
+                <div class="about-me__body">
+                    <p>
+                        Currently studying Computer Science at DigiPen-KMU, with a focus on computer graphics using OpenGL and
+                        data structures &amp; algorithms. Alongside these core subjects, I'm also building a foundation in
+                        mathematics and physics to deepen my understanding of real-time simulation and game systems.
+                    </p>
+                    <p>
+                        As a student, I've had the opportunity to form teams with diverse classmates and collaborate on game
+                        development projects from the ground up. These experiences taught me the value of clear communication,
+                        shared problem-solving, and bringing different perspectives together. Going forward, I want to continue
+                        growing as a developer by working with even more people and contributing to larger, more ambitious
+                        projects.
+                    </p>
+                </div>
+            </div>
+
+            <img src="img/tallme.jpg" alt="picture of Ginam Park" class="about-me__img" />
         </div>
-        <img src="img/tallme.jpg" alt="picture of Ginam Park" class="about-me__img reveal" />
     </section>
 
     <!-- My Portfolio -->
     <section class="my-projects" id="projects">
-        <h2 class="section__title section__title--projects reveal">My Projects</h2>
+        <h2 class="section__title section__title--projects reveal">
+            <span class="code-comment">// Projects</span>
+        </h2>
         <p class="section__subtitle section__subtitle--projects reveal">
             A selection of my range of projects
         </p>
@@ -163,7 +188,9 @@
 
     <!-- Resume Section -->
     <section class="my-resume" id="resume">
-        <h2 class="section__title section__title--resume reveal">Resume</h2>
+        <h2 class="section__title section__title--resume reveal">
+            <span class="code-comment">// Resume</span>
+        </h2>
         <a target="_blank" href="docs/Resume.pdf" class="resume-pdf-link"><i class="far fa-file-pdf"></i> PDF</a>
 
         <div class="resume-section reveal">
@@ -230,6 +257,7 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <p class="footer__signoff">return 0;</p>
         <a href="mailto:ginam.park@digipen.edu" class="footer__link">ginam.park@digipen.edu</a>
         <ul class="social-list">
             <li class="social-list__item">
