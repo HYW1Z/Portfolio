@@ -31,7 +31,6 @@
 <body>
     <header>
         <div class="logo">
-            <!-- alt text can be blank since the logo is purely decorative and putting something like logo isn't actually helpful -->
             <img src="../img/cout.jpg" alt="">
         </div>
         <button class="nav-toggle" aria-label="toggle navigation">
@@ -69,23 +68,42 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            Hello Quad is the first assignment for CS250 Computer Graphics II at DigiPen Institute of Technology.
+            The goal of this project is to set up a foundational OpenGL rendering pipeline capable of displaying
+            and animating a textured quad. This includes implementing core OpenGL abstraction classes
+            (IndexBuffer, VertexBuffer, VertexArray, and Texture), writing GLSL shaders with time-based animations,
+            and building a cross-platform application that runs on both Windows x64 and the Web via Emscripten/WebGL 2.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li><strong>IndexBuffer:</strong> Implemented GPU index buffer creation, binding, and cleanup using GL:: wrapper functions with support for unsigned int, unsigned short, and unsigned byte element types.</li>
+            <li><strong>VertexBuffer:</strong> Implemented GPU vertex buffer allocation with both static and dynamic data upload via BufferData and BufferSubData, along with proper resource management through move semantics.</li>
+            <li><strong>VertexArray:</strong> Implemented vertex array object creation with automatic vertex attribute configuration, supporting interleaved buffer layouts, integer/float attribute pointers, normalization, and instancing divisors.</li>
+            <li><strong>Texture:</strong> Implemented 2D texture loading from file images (via stb_image) and from memory, with configurable filtering (Nearest/Linear) and wrapping modes (Repeat, Clamp, Mirror).</li>
+            <li><strong>Vertex Shader Animation:</strong> Added time-based rotation and a breathing scale effect to animate the quad vertices using the uTime uniform from the application's elapsed time.</li>
+            <li><strong>Fragment Shader Animation:</strong> Implemented a smooth cycling blend between vertex colors and texture colors using a sine-wave mix factor driven by uTime.</li>
+            <li><strong>Custom Texture:</strong> Created a custom paint_me.png texture with an original drawing.</li>
+            <li><strong>Environment Integration:</strong> Connected shader uniforms (uTime, uFrameCount) to the window environment variables (ElapsedTime, FrameCount, FPS) for real-time animation control.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            This project served as a solid introduction to setting up a modern OpenGL rendering pipeline from scratch.
+            One of the key challenges was understanding how Vertex Array Objects coordinate the relationship between
+            vertex buffers, index buffers, and attribute pointers — particularly ensuring the correct bind/unbind order
+            so that the VAO properly records the element buffer binding. Working with the GL:: wrapper functions
+            instead of raw OpenGL calls helped reinforce good error-checking habits. Writing the shader animations
+            was the most rewarding part, as small changes in the GLSL code produced immediately visible results,
+            and the hot-reload feature made iteration fast and enjoyable. Overall, this assignment built a strong
+            foundation for the more advanced rendering techniques to come in later assignments.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
         <h2>Demo</h2>
-        <!-- TODO demo the webgl version of the project -->
-        <iframe id="demo" src="../webgl/D01HelloQuad/graphics_fun.html"></iframe>
+        <iframe id="demo" src="https://hyw1z.github.io/Hello-Quad/"></iframe>
     </div>
 
 
