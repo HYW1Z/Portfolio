@@ -32,7 +32,6 @@
 <body>
     <header>
         <div class="logo">
-            <!-- alt text can be blank since the logo is purely decorative and putting something like logo isn't actually helpful -->
             <img src="../img/cout.jpg" alt="">
         </div>
         <button class="nav-toggle" aria-label="toggle navigation">
@@ -61,7 +60,6 @@
 
     <!-- Introduction -->
     <section class="intro">
-        <!-- TODO put the name of the assignment here -->
         <h1 class="section__title section__title--intro">
             Project <strong>Procedural Geometric Modeling</strong>
         </h1>
@@ -71,22 +69,42 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            Procedural Geometric Modeling is the second assignment for CS250 Computer Graphics II.
+            The goal is to procedurally generate six 3D primitives — Plane, Cube, Sphere, Torus, Cylinder, and Cone —
+            entirely through code, without importing any external model files. Each mesh is constructed by computing
+            vertex positions, normals, and UV coordinates from parametric equations, then assembling triangle index
+            buffers to form the final geometry. The project also introduces a Material system for managing shaders,
+            textures, and render state, and supports wireframe and normal visualization modes.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li><strong>Index Buffer Generation:</strong> Implemented a shared index buffer builder that creates triangle pairs per grid cell from stacks and slices parameters, reused across all mesh types.</li>
+            <li><strong>Plane:</strong> Generated a grid of vertices spanning [-0.5, 0.5] in X and Y with Z-facing normals and direct UV mapping.</li>
+            <li><strong>Cube:</strong> Constructed by transforming six instances of the plane geometry with rotation and translation matrices for each face.</li>
+            <li><strong>Sphere:</strong> Computed vertices using spherical coordinates (latitude/longitude) with radius 0.5, deriving normals from normalized positions.</li>
+            <li><strong>Torus:</strong> Generated using two-angle parametric equations with major radius 0.35 and minor radius 0.15, computing normals as the offset from the tube center.</li>
+            <li><strong>Cylinder:</strong> Built the side surface with circular cross-sections along the Y axis, plus top and bottom caps using a fan triangle pattern.</li>
+            <li><strong>Cone:</strong> Created with linearly tapering radius from bottom to top, computing surface normals using the tangent slope, with a bottom cap.</li>
+            <li><strong>Wireframe Conversion:</strong> Implemented conversion from triangle indices to line indices, extracting quad outlines where possible and falling back to triangle edges for caps.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            This assignment deepened my understanding of how 3D meshes are built from mathematical definitions rather
+            than artist-created models. The trickiest part was getting the cap geometry right for cylinders and cones —
+            the winding order of the triangles had to be flipped depending on whether it was a top or bottom cap to
+            ensure correct face culling. The wireframe conversion logic was also interesting, as it needed to detect
+            the quad pattern from the index buffer to avoid drawing redundant diagonal edges. Seeing all six shapes
+            rotate together with proper UV mapping and normals was very satisfying and gave me a solid feel for how
+            parametric surfaces work in practice.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
         <h2>Demo</h2>
-        <iframe id="demo" src="../webgl/D02ProceduralMeshes/graphics_fun.html?start=meshes" tabindex="-1"></iframe>
+        <iframe id="demo" src="https://hyw1z.github.io/Procedural/?start=meshes" tabindex="-1"></iframe>
     </div>
 
     <!-- Footer -->
