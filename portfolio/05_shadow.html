@@ -69,22 +69,50 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            This project implements real-time shadow mapping for a 3D scene rendered with OpenGL (ES 3.0 / WebGL 2).
+            A perspective light source casts shadows onto dynamically placed objects by rendering a depth map from the
+            light's point of view, then comparing fragment depths during the main rendering pass. The demo also
+            features exponential fog, gamma correction, and an interactive ImGui panel for tuning every shadow parameter
+            at runtime.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li><strong>Camera System</strong> — Implemented <code>ViewMatrix()</code> and <code>ToWorldMatrix()</code>
+                using the camera's orthonormal basis vectors (Right, Up, Back) and eye position, without relying on
+                external inverse functions.</li>
+            <li><strong>Texture Enhancements</strong> — Extended the Texture class with
+                <code>LoadAsDepthTexture()</code> supporting 16/24/32-bit depth formats with shadow comparison mode,
+                and <code>LoadAsRGBA()</code> for color render targets.</li>
+            <li><strong>FrameBuffer Class</strong> — Built a framebuffer abstraction that creates and manages
+                depth and color texture attachments, with proper OpenGL resource lifecycle handling.</li>
+            <li><strong>Shadow Mapping Pipeline</strong> — Implemented a two-pass rendering pipeline:
+                first rendering scene depth from the light's perspective into an FBO, then sampling that depth map
+                in the main pass using <code>textureProj()</code> with a bias matrix for correct shadow lookup.</li>
+            <li><strong>Shader Work</strong> — Wrote the shadow vertex shader to transform positions into
+                clip, view, and shadow space, and the fragment shader to perform projective shadow sampling,
+                behind-light correction, gamma correction (1/2.2), and exponential fog blending.</li>
+            <li><strong>Debug Visualization</strong> — Added light frustum rendering by transforming an NDC cube
+                through the inverse light projection and the light's camera-to-world matrix, plus a full-screen
+                depth texture preview.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            The trickiest part was getting the shadow bias matrix right — the scale-and-translate from NDC
+            [-1,1] to texture coordinates [0,1] is a subtle but critical step that causes visible artifacts when
+            wrong. Polygon offset and the option to render back faces during the depth pass helped reduce shadow
+            acne. Understanding how <code>textureProj()</code> divides by <em>w</em> internally made the
+            projective texture lookup click. Overall, this project tied together framebuffers, multiple render
+            passes, and coordinate-space transformations in a way that solidified my understanding of the
+            graphics pipeline.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
         <h2>Demo</h2>
-        <iframe id="demo" src="../webgl/D05ShadowMapping/graphics_fun.html?start=shadow" tabindex="-1"></iframe>
+        <iframe id="demo" src="https://hyw1z.github.io/Shadow/?start=shadow" tabindex="-1"></iframe>
     </div>
 
     <!-- Footer -->
