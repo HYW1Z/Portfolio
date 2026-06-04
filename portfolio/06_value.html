@@ -69,22 +69,47 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            This project implements a Value Noise algorithm in C++ for generating procedural textures.
+            The system supports 1D, 2D, and 3D noise evaluation using permutation hashing and configurable
+            interpolation methods (Linear, Cosine, Smoothstep, Quintic). The generated noise is uploaded
+            to an OpenGL texture and displayed in real time, with ImGui controls for adjusting period size,
+            smoothing, tiling scale, noise dimension, and pattern type (Fractal Sum, Turbulence, Marble, Wood).
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li><strong>Value Noise Core</strong> &mdash; Implemented the <code>ValueNoise</code> template class
+                with 1D linear, 2D bilinear, and 3D trilinear interpolation, all driven by a permutation hash
+                table that wraps at period boundaries for seamless tiling.</li>
+            <li><strong>Permutation Hash</strong> &mdash; Built a <code>PermutationHash</code> class that
+                generates a shuffled permutation table at construction and supports 1D, 2D, and 3D
+                index lookups using bitwise masking for period wrapping.</li>
+            <li><strong>Interpolation &amp; Smoothing</strong> &mdash; Implemented <code>linear_mix</code>,
+                <code>bilinear_mix</code>, and <code>trilinear_mix</code> functions alongside four fade
+                curves (Linear, Cosine, Smoothstep, Quintic) for controlling interpolation smoothness.</li>
+            <li><strong>Noise Coordinate System</strong> &mdash; Created <code>make_noise_coord</code> to
+                decompose floating-point input into base index, next index, and fractional interpolant.</li>
+            <li><strong>Texture Pipeline</strong> &mdash; Added <code>UploadAsRGBA</code> to the Texture class
+                using <code>TexSubImage2D</code> for efficient pixel data updates without recreating the texture.</li>
+            <li><strong>Shaders</strong> &mdash; Wrote <code>simple.vert</code> and <code>simple.frag</code>
+                for full-screen quad rendering with configurable tile scaling via a uniform.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            Getting seamless tiling right was the key challenge &mdash; the permutation hash must wrap
+            consistently at period boundaries so that noise values at opposite edges match up. Using
+            bitwise AND with the period mask made this clean and efficient. Implementing the four
+            different smoothing methods side by side gave a clear intuition for how interpolation
+            curves affect visual quality: linear produces visible grid artifacts, while quintic
+            smoothing eliminates them almost entirely.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
         <h2>Demo</h2>
-        <iframe id="demo" src="../webgl/D06ValueNoise/graphics_fun.html?start=value" tabindex="-1"></iframe>
+        <iframe id="demo" src="https://hyw1z.github.io/Noise/?start=value" tabindex="-1"></iframe>
     </div>
 
     <!-- Footer -->
