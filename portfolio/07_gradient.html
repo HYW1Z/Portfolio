@@ -68,22 +68,49 @@
 
     <div class="portfolio-item-individual">
         <h2>Project Overview</h2>
-        <p>Provide a brief description of the project, its purpose, and what you aimed to achieve.</p>
+        <p>
+            This project implements GPU-based 3D Gradient (Perlin) Noise entirely in GLSL fragment shaders,
+            building on the Value Noise assignment by moving noise generation from the CPU to the GPU.
+            A procedural hash function generates pseudo-random gradient vectors at lattice points, which are
+            dot-producted with distance vectors and interpolated using a quintic fade curve to produce smooth,
+            continuous noise. The noise is rendered into an R32F framebuffer texture and can be viewed either
+            as a 2D greyscale texture or as a 3D displaced surface with a fly-around spectator camera.
+            Five pattern types are supported: plain Gradient, Fractal Sum (fBm), Turbulence, Marble, and Wood.
+        </p>
 
         <h2>Tasks Completed</h2>
         <ul>
-            <li>Describe the tasks you completed for this project.</li>
-            <li>Be specific about your contributions and the technologies used.</li>
+            <li><strong>Gradient Noise Shader</strong> &mdash; Implemented 3D Perlin noise in GLSL using a
+                sin-based procedural hash for gradient generation, eight-corner dot products, and quintic
+                Hermite interpolation for smooth trilinear blending.</li>
+            <li><strong>Pattern Variations</strong> &mdash; Built five distinct noise patterns: plain gradient
+                noise, Fractal Sum (6-octave fBm), Turbulence (absolute-value fBm), Marble (sine distortion
+                driven by turbulence), and Wood (fractional noise for ring patterns).</li>
+            <li><strong>R32F Framebuffer</strong> &mdash; Extended the FrameBuffer and Texture classes to support
+                single-channel 32-bit float render targets, enabling high-precision noise storage.</li>
+            <li><strong>Surface Displacement</strong> &mdash; Wrote a vertex shader that samples the noise
+                texture via <code>textureLod</code> to displace mesh vertices, creating a 3D terrain
+                visualization from the generated noise data.</li>
+            <li><strong>Display Shader</strong> &mdash; Created a shared fragment shader that maps the R32F
+                noise value to greyscale output, used by both the 2D texture view and the 3D surface view.</li>
         </ul>
 
         <h2>Reflection</h2>
-        <p>Reflect on the project, discussing any challenges faced, solutions implemented, and what you learned from the
-            experience.</p>
+        <p>
+            Moving noise generation from the CPU to the GPU was a significant shift in thinking &mdash; instead
+            of permutation tables and array lookups, everything had to be expressed as pure math functions in
+            GLSL. The procedural hash approach trades the determinism of a permutation table for simplicity
+            and GPU-friendliness. Tuning the noise frequency and amplitude to match the reference demo required
+            understanding how the scale parameter, tiling scale, and surface model matrix all interact to
+            determine the final visual density of the terrain. Seeing the same noise data drive both a flat
+            texture preview and a fully navigable 3D surface made the connection between procedural textures
+            and terrain generation very concrete.
+        </p>
     </div>
 
     <div class="portfolio-item-individual">
         <h2>Demo</h2>
-        <iframe id="demo" src="../webgl/D07GradientNoise/graphics_fun.html?start=gradient" tabindex="-1"></iframe>
+        <iframe id="demo" src="https://hyw1z.github.io/Gradient-Noise/?start=gradient" tabindex="-1"></iframe>
     </div>
 
     <!-- Footer -->
@@ -93,6 +120,11 @@
             <li class="social-list__item">
                 <a class="social-list__link" href="https://github.com/HYW1Z">
                     <i class="fab fa-github"></i>
+                </a>
+            </li>
+            <li class="social-list__item">
+                <a class="social-list__link" href="https://www.linkedin.com/in/ginam-park/">
+                    <i class="fab fa-linkedin"></i>
                 </a>
             </li>
         </ul>
